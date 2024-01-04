@@ -13,19 +13,61 @@ class ViewController: UIViewController {
 
     var dataLabel = UILabel()
     let nextViewButton = UIButton(type: .system)
+    var newLabelMessage = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let second = SecondViewController()
-//        let first = ViewController()
-        second.delegate = self
-        second.sendString()
         
         setupNextViewButton()
         setupDataLabel()
-        
-        
     }
+    
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//        let second = SecondViewController()
+////        let first = ViewController()
+//        second.delegate = self
+//        second.sendString()
+//        
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("1")
+        
+        let second = SecondViewController()
+        //        let first = ViewController()
+        second.delegate = self
+//        second.sendString()
+        second.sendMessage()
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("2")
+        let second = SecondViewController()
+        //        let first = ViewController()
+        second.delegate = self
+//        second.sendString()
+        second.sendMessage()
+    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//
+//        if self.isMovingFromParent {
+//            print("1")
+//        }
+//        if self.isBeingDismissed {
+//            print("2")
+//        }
+//        if self.navigationController?.isBeingDismissed ?? false {
+//            print("3")
+//        }
+//    }
     
     func setupNextViewButton() {
         nextViewButton.setTitle("Переход на второй экран", for: .normal)
@@ -40,7 +82,7 @@ class ViewController: UIViewController {
     }
     
     func setupDataLabel() {
-//        dataLabel.text = "Label"
+        dataLabel.text = ""
         dataLabel.textColor = .black
         dataLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -77,6 +119,15 @@ class ViewController: UIViewController {
             navController.navigationBar.prefersLargeTitles = true
             present(navController, animated: true, completion: nil)
         }
+        
+        
+//        @IBAction func openView(_ sender: Any) {
+//                let storyboard = UIStoryboard(name: "View2", bundle: nil)
+//                let view2viewController = storyboard.instantiateViewController(withIdentifier: "view2viewController") as! view2viewController
+//
+//                view2viewController.delegate = self
+//                view2viewController.modalPresentationStyle = .fullScreen
+//                present(view2viewController, animated: true, completion: nil)
     }
 
 }
@@ -85,7 +136,8 @@ extension ViewController: LabelDelegate {
     func receiveLabelText(labelMessage: String) {
         
         print("text", labelMessage)
-        self.dataLabel.text = "\(labelMessage)"
+        self.dataLabel.text = labelMessage
+//        newLabelMessage = labelMessage
     }
 }
 
