@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  TMSHomework-Lesson12
+//  Homework12
 //
-//  Created by Наталья Мазур on 31.12.23.
+//  Created by Наталья Мазур on 4.01.24.
 //
 
 import UIKit
@@ -10,12 +10,10 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-    
+
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let navigationController = UINavigationController(rootViewController: ViewController())
-                window?.rootViewController = navigationController
-                window?.makeKeyAndVisible()
+        // Override point for customization after application launch.
         return true
     }
 

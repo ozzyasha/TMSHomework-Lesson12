@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  TMSHomework-Lesson12
+//  Homework12
 //
-//  Created by Наталья Мазур on 31.12.23.
+//  Created by Наталья Мазур on 4.01.24.
 //
 
 import UIKit
