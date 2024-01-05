@@ -7,13 +7,10 @@
 
 import UIKit
 
-
-
 class ViewController: UIViewController {
 
     var dataLabel = UILabel()
     let nextViewButton = UIButton(type: .system)
-    var newLabelMessage = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,53 +18,6 @@ class ViewController: UIViewController {
         setupNextViewButton()
         setupDataLabel()
     }
-    
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        let second = SecondViewController()
-////        let first = ViewController()
-//        second.delegate = self
-//        second.sendString()
-//        
-//    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print("1")
-        
-        let second = SecondViewController()
-        //        let first = ViewController()
-        second.delegate = self
-//        second.sendString()
-        second.sendMessage()
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        print("2")
-        let second = SecondViewController()
-        //        let first = ViewController()
-        second.delegate = self
-//        second.sendString()
-        second.sendMessage()
-    }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//
-//        if self.isMovingFromParent {
-//            print("1")
-//        }
-//        if self.isBeingDismissed {
-//            print("2")
-//        }
-//        if self.navigationController?.isBeingDismissed ?? false {
-//            print("3")
-//        }
-//    }
     
     func setupNextViewButton() {
         nextViewButton.setTitle("Переход на второй экран", for: .normal)
@@ -108,8 +58,9 @@ class ViewController: UIViewController {
 
     @objc func nextViewButtonTapped() {
         let storyboard = UIStoryboard(name: "Second", bundle: nil)
-        let secondVC: UIViewController = storyboard.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
+        let secondVC = storyboard.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
         
+        secondVC.delegate = self
         secondVC.modalPresentationStyle = .fullScreen
         
         if let navigationController = navigationController {
@@ -120,24 +71,14 @@ class ViewController: UIViewController {
             present(navController, animated: true, completion: nil)
         }
         
-        
-//        @IBAction func openView(_ sender: Any) {
-//                let storyboard = UIStoryboard(name: "View2", bundle: nil)
-//                let view2viewController = storyboard.instantiateViewController(withIdentifier: "view2viewController") as! view2viewController
-//
-//                view2viewController.delegate = self
-//                view2viewController.modalPresentationStyle = .fullScreen
-//                present(view2viewController, animated: true, completion: nil)
     }
 
 }
 
 extension ViewController: LabelDelegate {
     func receiveLabelText(labelMessage: String) {
-        
         print("text", labelMessage)
-        self.dataLabel.text = labelMessage
-//        newLabelMessage = labelMessage
+        dataLabel.text = labelMessage
     }
 }
 
